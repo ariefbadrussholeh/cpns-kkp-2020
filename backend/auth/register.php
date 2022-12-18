@@ -7,7 +7,7 @@ if (isset($_POST['register'])){
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
-    $query = "SELECT * FROM users WHERE email = '$email'";
+    $query = "SELECT * FROM users WHERE email = '$email' AND nik = '$nik'";
     $get = mysqli_query($conn, $query);
 
     if ($get->num_rows > 0){

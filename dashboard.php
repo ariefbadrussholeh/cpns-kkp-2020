@@ -14,6 +14,14 @@
     <script src="https://kit.fontawesome.com/67af74f10d.js" crossorigin="anonymous"></script>
     <title>Seleksi Penerimaan CPNS KKP 2022</title>
   </head>
+
+<!--  --><?php
+//      session_start();
+//      if (!isset($_SESSION['email'])){
+//          header("Location: login.php");
+//      }
+//  ?>
+
   <body>
     <?php include './public/component/header.php'?>
     <div class="container">
