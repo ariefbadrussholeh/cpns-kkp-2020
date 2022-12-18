@@ -22,7 +22,7 @@ CREATE TABLE users(
     document_submitted_at TIMESTAMP NOT NULL,
     status VARCHAR(50) NOT NULL,
     verified_by VARCHAR(50),
-    FOREIGN KEY (verified_by) REFERENCES admin(name)
+    FOREIGN KEY (verified_by) REFERENCES admin(email)
 );
 
 CREATE TABLE test_location(
@@ -48,9 +48,5 @@ CREATE TABLE card (
     position_apply VARCHAR(50) NOT NULL,
     test_location VARCHAR(50) NOT NULL,
     time_at VARCHAR(50) NOT NULL,
-    FOREIGN KEY (nik) REFERENCES users(nik),
-    FOREIGN KEY (name) REFERENCES users(name),
-    FOREIGN KEY (position_apply) REFERENCES users(position_apply),
-    FOREIGN KEY (test_location) REFERENCES test_location(name),
-    FOREIGN KEY (time_at) REFERENCES test_time(time_at)
+    FOREIGN KEY (nik) REFERENCES users(nik)
 );
