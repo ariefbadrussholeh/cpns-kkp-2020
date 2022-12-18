@@ -240,20 +240,25 @@ nav div img {
   header img {
     margin-right: 24px;
   }
-  body {
-    height: fit-content;
+  .container {
+    display: flex;
   }
   nav {
-    position: unset;
     display: block;
+    position: unset;
     width: 20%;
-    float: left;
-    height: 100vh;
   }
   main {
     width: 80%;
-    float: right;
+    height: 1200px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 36px;
+  }
+  .box {
+    margin: 0;
+    margin-bottom: 36px;
   }
 }
