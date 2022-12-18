@@ -41,7 +41,7 @@ header h1 {
   width: 50%;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"].for-header {
   display: none;
   visibility: hidden;
 }
@@ -52,6 +52,7 @@ input[type="checkbox"] {
   cursor: pointer;
   width: 50px;
   height: 40px;
+  margin-right: 16px;
   transform: scale(0.7);
   z-index: 30;
 }
@@ -219,6 +220,119 @@ nav div img {
   margin-bottom: 12px;
 }
 
+main {
+  padding: 24px;
+}
+
+main h1 {
+  color: #20304e;
+  margin-bottom: 32px;
+}
+
+.upload-photos {
+  width: 200px;
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  border: 2px dashed black;
+  border-radius: 10px;
+}
+
+.upload-photos.active {
+  border-style: solid;
+}
+
+.upload-photos p {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 1em;
+}
+
+.upload-photos input {
+  display: none;
+}
+
+.upload-photos img#preview {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+
+input {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  border: none;
+  padding: 12px;
+  font-family: "Poppins";
+  margin-bottom: 6px;
+  color: black;
+}
+input[disabled] {
+  background-color: #aaa;
+}
+
+select {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  border: none;
+  padding: 12px;
+  font-family: "Poppins";
+  margin-bottom: 6px;
+  color: black;
+}
+
+option {
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+input[type="checkbox"] {
+  accent-color: black;
+  display: inline;
+  width: fit-content;
+}
+label.check {
+  display: inline;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #69aa63;
+  border-radius: 50px;
+  border: none;
+  color: #ffffff;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 1em;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-top: 24px;
+}
+
+button:hover {
+  background-color: #69aa63dd;
+}
+
 @media only screen and (min-width: 768px) {
   nav {
     width: 50%;
@@ -226,6 +340,18 @@ nav div img {
     top: 114px;
     border-top: 1px solid #ffc300;
     padding-top: 0;
+  }
+
+  .flex-container {
+    display: flex;
+  }
+
+  .form-group {
+    width: 50%;
+  }
+
+  main {
+    padding: 52px;
   }
 }
 
@@ -250,7 +376,7 @@ nav div img {
   }
   main {
     width: 80%;
-    height: 1200px;
+    height: 1300px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -260,5 +386,9 @@ nav div img {
   .box {
     margin: 0;
     margin-bottom: 36px;
+  }
+
+  form {
+    width: 80%;
   }
 }
