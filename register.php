@@ -14,6 +14,16 @@
     <script src="https://kit.fontawesome.com/67af74f10d.js" crossorigin="anonymous"></script>
     <title>Registrasi - Seleksi Penerimaan CPNS KKP 2022</title>
   </head>
+
+  <?php
+  include "$_SERVER[DOCUMENT_ROOT]/server.php";
+    error_reporting(0);
+    session_start();
+    if (isset($_SESSION['email'])){
+        header("Location: ../login.php");
+    }
+  ?>
+
   <body class="bg-grey">
     <div class="logo">
       <img src="./public/img/Logo Kementrian.png" alt="Kementrian Kelautan dan Perikanan" />
@@ -22,16 +32,16 @@
     <h1 class="title">Kementrian Kelautan dan Perikanan</h1>
     <div class="card">
       <h2>Registrasi</h2>
-      <form action="./backend/auth/register.php" method="post">
+      <form action="./backend/auth/register.php" method="POST">
         <div id="form-nik">
           <label for="nik">NIK</label>
           <div class="input-group">
             <input type="text" name="nik" id="nik" placeholder="Masukkan nomor KTP anda" autocomplete="off" onchange="validateNIK()" />
             <p id="error-nik" class="error"></p>
           </div>
-          <button type="button" id="btn-verify" onclick="verification()">Registrasi</button>
+<!--          <button type="button" id="btn-verify" onclick="verification()">Registrasi</button>-->
         </div>
-        <div class="hidden" id="form-register">
+        <div class="" id="form-register">
           <div class="input-group">
             <label for="email">Email</label>
             <input type="text" name="email" id="email" placeholder="Masukkan email anda" autocomplete="off" onchange="validateEmail()" />
@@ -51,7 +61,7 @@
             ></i>
             <p id="error-confirm-pwd" class="error"></p>
           </div>
-          <button type="submit" onclick="registration()">Registrasi</button>
+          <button type="submit" name="register" onclick="registration()">Registrasi</button>
         </div>
       </form>
     </div>
@@ -62,3 +72,27 @@
     <script src="./public/js/form-validation.js"></script>
   </body>
 </html>
+
+<?php
+//    $nik = $_POST['nik'];
+//    $email = $_POST['email'];
+//    $password = md5($_POST['password']);
+//
+//    $query = "SELECT * FROM users WHERE email = '$email' AND nik = '$nik'";
+//    $get = pg_query($connect, $query);
+//
+//    $data = array();
+//
+//    if (pg_num_rows($get) > 0){
+//        echo "Email or nik already exist";
+//    }else{
+//        $query_insert = "INSERT INTO users(nik, email, password) VALUES ('$nik', '$email', '$password')";
+//        $insert = pg_query($connect, $query_insert);
+//
+//        if ($insert){
+//            echo "Register success";
+//        }else{
+//            echo "Register failed";
+//        }
+//    }
+//?>

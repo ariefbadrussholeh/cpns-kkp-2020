@@ -14,6 +14,16 @@
     <script src="https://kit.fontawesome.com/67af74f10d.js" crossorigin="anonymous"></script>
     <title>Masuk - Seleksi Penerimaan CPNS KKP 2022</title>
   </head>
+
+  <?php
+      include "$_SERVER[DOCUMENT_ROOT]/server.php";
+      error_reporting(0);
+      session_start();
+      if (isset($_SESSION['email'])){
+          header("Location: dashboard.php");
+      }
+  ?>
+
   <body class="bg-grey">
     <div class="logo">
       <img src="./public/img/Logo Kementrian.png" alt="Kementrian Kelautan dan Perikanan" />
@@ -34,7 +44,7 @@
           <p id="error-pwd" class="error"></p>
         </div>
         <p>Belum punya akun? <a href="./register.php">Daftar</a></p>
-        <button type="submit" onclick="login()">Masuk</button>
+        <button type="submit" name="login" onclick="login()">Masuk</button>
       </form>
     </div>
     <img class="frame" src="./public/img/Frame.svg" alt="frame" />
