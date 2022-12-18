@@ -16,7 +16,6 @@
   </head>
 
   <?php
-      include "$_SERVER[DOCUMENT_ROOT]/server.php";
       error_reporting(0);
       session_start();
       if (isset($_SESSION['email'])){

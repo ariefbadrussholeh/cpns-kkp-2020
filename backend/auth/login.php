@@ -10,6 +10,7 @@ if (isset($_POST['login'])){
 
     if ($get->num_rows > 0){
         $row = mysqli_fetch_assoc($get);
+        session_start();
         $_SESSION['email'] = $row['email'];
         header("Location: ../../dashboard.php");
     }else{
