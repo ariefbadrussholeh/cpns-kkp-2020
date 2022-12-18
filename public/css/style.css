@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Copperplate Gothic Bold";
+  src: url(../font/CopperplateGothicBold.ttf);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.bg-grey {
+  background-color: #414651;
+}
+
+.hidden {
+  display: none;
+}
+
+.logo {
+  width: fit-content;
+  margin: 16px auto;
+}
+
+.logo img {
+  height: 80px;
+}
+
+.title {
+  text-align: center;
+  font-family: "Copperplate Gothic Bold", sans-serif;
+  color: #ffffff;
+}
+
+.card {
+  margin: 32px auto;
+  background-color: #ffffff;
+  width: 90%;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.card h2 {
+  color: #414551;
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+
+input {
+  width: 100%;
+  border-radius: 50px;
+  border: 1px solid #889096;
+  padding: 12px;
+  font-family: "Poppins";
+  margin-bottom: 6px;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #414250;
+  border-radius: 50px;
+  color: #ffffff;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 1em;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #889096;
+}
+
+.error {
+  color: red;
+  font-size: small;
+}
+
+.frame {
+  display: none;
+}
+
+form p {
+  font-size: small;
+}
+
+form a {
+  color: #20304e;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 64px;
+  }
+
+  .logo {
+    margin: 0;
+    position: fixed;
+    top: 24px;
+    left: 24px;
+  }
+
+  .title {
+    text-align: start;
+    width: 45%;
+  }
+
+  .card {
+    width: 50%;
+    margin: 0;
+  }
+
+  .frame {
+    display: block;
+    height: 125%;
+    position: fixed;
+    top: 0;
+    right: -500px;
+    z-index: -30;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  body {
+    padding: 128px;
+  }
+  .card {
+    width: 30%;
+  }
+  .frame {
+    right: 0px;
+  }
+}
