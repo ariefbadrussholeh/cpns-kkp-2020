@@ -22,7 +22,7 @@
     <h1 class="title">Kementrian Kelautan dan Perikanan</h1>
     <div class="card">
       <h2>Registrasi</h2>
-      <form action="" method="post">
+      <form action="./backend/auth/register.php" method="post">
         <div id="form-nik">
           <label for="nik">NIK</label>
           <div class="input-group">

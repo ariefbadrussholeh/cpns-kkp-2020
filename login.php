@@ -22,7 +22,7 @@
     <h1 class="title">Kementrian Kelautan dan Perikanan</h1>
     <div class="card">
       <h2>Masuk</h2>
-      <form action="" method="post">
+      <form action="./backend/auth/login.php" method="post">
         <div class="input-group">
           <label for="email">Email</label>
           <input type="text" name="email" id="email" placeholder="Masukkan email anda" autocomplete="off" onchange="validateEmail()" />
