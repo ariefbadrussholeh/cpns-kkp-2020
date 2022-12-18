@@ -21,13 +21,13 @@
       <?php include './public/component/navbar.php'?>
       <main>
         <h1>Biodata</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="Test.php" method="POST" enctype="multipart/form-data">
           <div class="flex-container">
             <div class="upload-photos" id="upload-photos">
               <img src="./public/img/User Logo.svg" alt="">
               <p id="title">Masukkan foto berukuran 4x6</p>
             </div>
-            <input type="file" name="photo" id="photo" accept="image/png, image/jpeg" hidden>
+            <input type="file" name="photo" id="photo" accept="image/png, image/jpeg" hidden required>
             <div class="form-group">
               <div class="input-group">
                 <label for="nik">NIK</label>
@@ -35,11 +35,11 @@
               </div>
               <div class="input-group">
                 <label for="name">Nama</label>
-                <input type="text" name="name" id="name" placeholder="Masukkan nama lengkap anda" autocomplete="off"/>
+                <input type="text" name="name" id="name" placeholder="Masukkan nama lengkap anda" autocomplete="off" required/>
               </div>
               <div class="input-group">
                 <label for="date">Tanggal Lahir</label>
-                <input type="date" name="date" id="date"/>
+                <input type="date" name="date" id="date" required/>
               </div>
               <div class="input-group">
                 <label for="sex">Jenis Kelamin</label>
@@ -52,15 +52,20 @@
           </div>
           <div class="input-group">
             <label for="address">Alamat</label>
-            <input type="text" name="address" id="adress" placeholder="Masukkan alamat lengkap" autocomplete="off"/>
+            <input type="text" name="address" id="adress" placeholder="Masukkan alamat lengkap" autocomplete="off" required/>
           </div>
           <div class="input-group">
-            <input type="checkbox" id="aggreement">
+            <input type="checkbox" id="aggreement" required>
             <label for="aggreement" class="check">saya mengaku bahwa data yang saya masukkan adalah data asli</label>
           </div>
           <button type="submit">Submit</button>
         </form>
       </main>
+      <!-- Ini untuk kondisi sudah mengisi biodata -->
+      <div class="done" style="display: none;">
+        <img src="./public/img/success icon component.svg" alt="">
+        <p>Anda sudah mengisi biodata</p>
+      </div>
     </div>
     <!-- Javascript -->
     <script src="./public/js/navbar-toggle.js"></script>

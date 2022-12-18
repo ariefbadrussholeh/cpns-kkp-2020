@@ -22,5 +22,5 @@ dokumen.addEventListener("click", function () {
 });
 const logout = document.getElementById("logout");
 logout.addEventListener("click", function () {
-  window.location.href = "./proses-logout.php";
+  window.location.href = "./logout.php";
 });
