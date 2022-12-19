@@ -15,17 +15,23 @@
     <title>Seleksi Penerimaan CPNS KKP 2022</title>
   </head>
 
-<!--  --><?php
-//      session_start();
-//      if (!isset($_SESSION['email'])){
-//          header("Location: login.php");
-//      }
-//  ?>
+  <?php
+    session_start();
+    if (!isset($_SESSION['email'])){
+        header("Location: login.php");
+    } 
+    $email = $_SESSION['email'];
+    
+    include "./backend/functions.php";
+    $calon_pegawai = read("SELECT * FROM users WHERE email = '$email'")[0];
+  ?>
 
   <body>
     <?php include './public/component/header.php'?>
     <div class="container">
       <?php include './public/component/navbar.php'?>
+      <section>
+        <h1>Selamat Datang, <?php if(($calon_pegawai['name'] == "")) echo $calon_pegawai['nik']; else echo $calon_pegawai['name']; ?></h1>
       <main>
         <div class="box">
           <div class="box-group">
@@ -44,15 +50,15 @@
             </div>
           </div>
           <div class="group2">
-            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : 17 Desember 2022 - 11.30 WIB
+            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : <?= $calon_pegawai['created_at'] ?>
           </div>
         </div>
         <div class="box">
           <div class="box-group">
             <div class="timeline">
               <div class="title">
-                <div class="number box-waiting">2</div>
-                <h1 class="waiting">Biodata</h1>
+                <div class="number box-unfinished" id="bio-box">2</div>
+                <h1 class="unfinished" id="bio-h1">Biodata</h1>
               </div>
               <div class="group1">
                 <p>
@@ -64,7 +70,7 @@
             </div>
           </div>
           <div class="group2">
-            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : 18 Desember 2022 - 11.30 WIB
+            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : <?= $calon_pegawai['biodata_submitted_at'] ?>
           </div>
         </div>
         <div class="box">
@@ -84,7 +90,7 @@
             </div>
           </div>
           <div class="group2">
-            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : -
+            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : <?= $calon_pegawai['document_submitted_at'] ?>
           </div>
         </div>
         <div class="box">
@@ -101,7 +107,7 @@
             </div>
           </div>
           <div class="group2">
-            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : -
+            <img src="./public/img/calendar.svg" alt="" width="15px">  <b>Dilakukan Pada</b> : <?= $calon_pegawai['verified_at'] ?>
           </div>
         </div>
         <div class="box" style="padding: 24px; background-color: #eaeaea;">
@@ -122,8 +128,31 @@
           Demi menghindari penyalahgunaan data pribadi, mohon untuk tidak memberikna data apapun selain yang diisikan pada Sistem Seleksi Pegawai Kementrian Kelautan dan Perikanan Prov. Jatim
         </div>
       </main>
+      </section>
     </div>
     <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./public/js/navbar-toggle.js"></script>
+    <script>
+      const cpBiodataAt = <?= $calon_pegawai['biodata_submitted_at'] ?>
+      const cpDocumentAt = <?= $calon_pegawai['document_submitted_at'] ?>
+      const cpVerifiedAt = <?= $calon_pegawai['verified_at'] ?>
+
+      const bioh1 = document.getElementById("bio-h1");
+      const biobox = document.getElementById("bio-box");
+
+      if(cpBiodataAt != "0000-00-00 00:00:00" && cpVerifiedAt == "0000-00-00 00:00:00"){
+        bioh1.classList.remove("unfinished")
+        biobox.classList.remove("box-unfinished")
+        bioh1.classList.add("waiting")
+        biobox.classList.add("box-waiting")
+      } else {
+        bioh1.classList.remove("waiting")
+        biobox.classList.remove("box-waiting")
+        bioh1.classList.add("verified")
+        biobox.classList.add("box-verified")
+      }
+    </script>
   </body>
 </html>

@@ -15,11 +15,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Seleksi Penerimaan CPNS KKP 2022</title>
   </head>
+
+  <?php
+    session_start();
+    if (!isset($_SESSION['email'])){
+        header("Location: login.php");
+    } 
+    $email = $_SESSION['email'];
+
+    include "./backend/functions.php";
+    $nik = read("SELECT nik FROM users WHERE email = '$email'")[0]['nik'];
+  ?>
+
   <body>
     <?php include './public/component/header.php'?>
     <div class="container">
       <?php include './public/component/navbar.php'?>
-      <main>
+      <div class="flex">
         <h1>Dokumen Peserta</h1>
         <form action="Test.php" method="POST" enctype="multipart/form-data">
           <div class="input-group">
@@ -113,9 +125,10 @@
               </div>
             </div>
           </div>
-          <button type="submit">Submit</button>
+          <button type="button" onclick="validateSubmitDocument()">Submit</button>
+          <button type="submit" name="dokumen" hidden id="submit-document">Submit</button>
         </form>
-      </main>
+      </div>
       <!-- Ini untuk kondisi sudah mengisi biodata -->
       <div class="done" style="display: none;">
         <img src="./public/img/success icon component.svg" alt="">
@@ -125,5 +138,25 @@
     <!-- Javascript -->
     <script src="./public/js/navbar-toggle.js"></script>
     <script src="./public/js/drop-file.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function validateSubmitDocument() {
+        const submitDocument = document.getElementById("submit-document");
+        $(document).ready(function () {
+          Swal.fire({
+            icon: "question",
+            title: "Anda yakin ingin submit?",
+            showDenyButton: true,
+            confirmButtonText: "Iya",
+            denyButtonText: `Tidak`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              submitDocument.click()
+            }
+          });
+        });
+      }
+    </script>
   </body>
 </html>

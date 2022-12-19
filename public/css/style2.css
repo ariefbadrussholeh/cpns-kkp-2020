@@ -140,7 +140,7 @@ nav div img {
 .box {
   width: 90%;
   max-width: 400px;
-  margin: 64px auto;
+  margin: 32px auto;
 }
 
 .box-group {
@@ -220,13 +220,16 @@ nav div img {
   margin-bottom: 12px;
 }
 
-main {
-  padding: 24px;
+section,
+.flex {
+  padding: 32px;
 }
 
-main h1 {
+section h1,
+.flex h1 {
   color: #20304e;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
 .upload-photos {
@@ -396,7 +399,11 @@ label.radio {
     width: 50%;
   }
 
-  main {
+  section {
+    padding: 52px;
+  }
+
+  .flex {
     padding: 52px;
   }
 
@@ -428,14 +435,31 @@ label.radio {
     position: unset;
     width: 20%;
   }
-  main {
+  section {
     width: 80%;
+    padding: 36px;
+  }
+  main {
     height: 1300px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
+  }
+
+  .flex {
+    height: 1300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 80%;
     padding: 36px;
+  }
+
+  section h1 {
+    text-align: start;
+    margin-bottom: 42px;
   }
   .done {
     width: 80%;

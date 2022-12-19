@@ -15,13 +15,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Seleksi Penerimaan CPNS KKP 2022</title>
   </head>
+
+  <?php
+    session_start();
+    if (!isset($_SESSION['email'])){
+        header("Location: login.php");
+    } 
+    $email = $_SESSION['email'];
+
+    include "./backend/functions.php";
+    $nik = read("SELECT nik FROM users WHERE email = '$email'")[0]['nik'];
+  ?>
+
   <body>
     <?php include './public/component/header.php'?>
     <div class="container">
       <?php include './public/component/navbar.php'?>
-      <main>
+      <div class="flex">
         <h1>Biodata</h1>
-        <form action="Test.php" method="POST" enctype="multipart/form-data">
+        <form action="./backend/submit-biodata.php" method="POST" enctype="multipart/form-data">
           <div class="flex-container">
             <div class="upload-photos" id="upload-photos">
               <img src="./public/img/User Logo.svg" alt="">
@@ -31,7 +43,7 @@
             <div class="form-group">
               <div class="input-group">
                 <label for="nik">NIK</label>
-                <input type="text" name="nik" id="nik" value="3527031101020011" disabled/>
+                <input type="text" name="nik" id="nik" value="<?= $nik ?>" disabled/>
               </div>
               <div class="input-group">
                 <label for="name">Nama</label>
@@ -58,9 +70,10 @@
             <input type="checkbox" id="aggreement" required>
             <label for="aggreement" class="check">saya mengaku bahwa data yang saya masukkan adalah data asli</label>
           </div>
-          <button type="submit">Submit</button>
+          <button type="button" onclick="validateSubmitBiodata()">Submit</button>
+          <button type="submit" name="biodata" hidden id="submit-biodata">Submit</button>
         </form>
-      </main>
+      </div>
       <!-- Ini untuk kondisi sudah mengisi biodata -->
       <div class="done" style="display: none;">
         <img src="./public/img/success icon component.svg" alt="">
@@ -70,5 +83,25 @@
     <!-- Javascript -->
     <script src="./public/js/navbar-toggle.js"></script>
     <script src="./public/js/drop-photo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function validateSubmitBiodata() {
+        const submitBiodata = document.getElementById("submit-biodata");
+        $(document).ready(function () {
+          Swal.fire({
+            icon: "question",
+            title: "Anda yakin ingin submit?",
+            showDenyButton: true,
+            confirmButtonText: "Iya",
+            denyButtonText: `Tidak`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              submitBiodata.click()
+            }
+          });
+        });
+      }
+    </script>
   </body>
 </html>

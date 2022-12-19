@@ -31,11 +31,5 @@ if (isset($_POST['login'])){
                 });
             }) 
         </script>';
-                
-        // echo "<script>
-        //     alert('Email atau password Anda salah. Silahkan coba lagi!')
-        //     document.location.href='../../login.php';
-        // </script>";
-        // header("Location: ../../login.php");
     }
 }

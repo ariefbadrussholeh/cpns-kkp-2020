@@ -22,5 +22,17 @@ dokumen.addEventListener("click", function () {
 });
 const logout = document.getElementById("logout");
 logout.addEventListener("click", function () {
-  window.location.href = "./logout.php";
+  $(document).ready(function () {
+    Swal.fire({
+      icon: "question",
+      title: "Anda yakin ingin keluar?",
+      showDenyButton: true,
+      confirmButtonText: "Iya",
+      denyButtonText: `Tidak`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "./backend/auth/logout.php";
+      }
+    });
+  });
 });

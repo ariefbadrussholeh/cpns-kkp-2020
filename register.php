@@ -19,7 +19,7 @@
     error_reporting(0);
     session_start();
     if (isset($_SESSION['email'])){
-        header("Location: ../login.php");
+        header("Location: ./login.php");
     }
   ?>
 
@@ -71,27 +71,3 @@
     <script src="./public/js/form-validation.js"></script>
   </body>
 </html>
-
-<?php
-//    $nik = $_POST['nik'];
-//    $email = $_POST['email'];
-//    $password = md5($_POST['password']);
-//
-//    $query = "SELECT * FROM users WHERE email = '$email' AND nik = '$nik'";
-//    $get = pg_query($connect, $query);
-//
-//    $data = array();
-//
-//    if (pg_num_rows($get) > 0){
-//        echo "Email or nik already exist";
-//    }else{
-//        $query_insert = "INSERT INTO users(nik, email, password) VALUES ('$nik', '$email', '$password')";
-//        $insert = pg_query($connect, $query_insert);
-//
-//        if ($insert){
-//            echo "Register success";
-//        }else{
-//            echo "Register failed";
-//        }
-//    }
-//?>
