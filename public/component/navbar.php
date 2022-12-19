@@ -1,5 +1,5 @@
 <nav id="navbar">
-  <div class="menu active" id="dashboard">
+  <div class="menu" id="dashboard">
     <img src="./public/img/home.svg" alt="" />
     <p>Dashboard</p>
   </div>

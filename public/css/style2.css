@@ -382,6 +382,35 @@ label.radio {
   margin-bottom: 24px;
 }
 
+/* Just common table stuff. Really. */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 25px;
+}
+th,
+td {
+  padding: 8px 16px;
+}
+td {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #889096;
+}
+th {
+  background: #20304e;
+  color: white;
+}
+
+.block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+td a {
+  display: block;
+}
+
 @media only screen and (min-width: 768px) {
   nav {
     width: 50%;
