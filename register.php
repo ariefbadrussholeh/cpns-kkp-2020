@@ -38,7 +38,6 @@
             <input type="text" name="nik" id="nik" placeholder="Masukkan nomor KTP anda" autocomplete="off" onchange="validateNIK()" />
             <p id="error-nik" class="error"></p>
           </div>
-<!--          <button type="button" id="btn-verify" onclick="verification()">Registrasi</button>-->
         </div>
         <div class="" id="form-register">
           <div class="input-group">
@@ -60,7 +59,8 @@
             ></i>
             <p id="error-confirm-pwd" class="error"></p>
           </div>
-          <button type="submit" name="register" onclick="registration()">Registrasi</button>
+          <button type="button" onclick="registerValidation()">Registrasi</button>
+          <button hidden type="submit" name="register" onclick="registerValidation()" id="register"></button>
         </div>
       </form>
     </div>

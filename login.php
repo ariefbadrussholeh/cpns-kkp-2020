@@ -43,7 +43,8 @@
           <p id="error-pwd" class="error"></p>
         </div>
         <p>Belum punya akun? <a href="./register.php">Daftar</a></p>
-        <button type="submit" name="login" onclick="login()">Masuk</button>
+        <button type="button" onclick="loginValidation()">Masuk</button>
+        <button type="submit" name="login" hidden id="login">Masuk</button>
       </form>
     </div>
     <img class="frame" src="./public/img/Frame.svg" alt="frame" />

@@ -74,10 +74,22 @@ function verification() {
   formRegister.classList.remove("hidden");
 }
 
-function registration() {
+function registerValidation() {
   if (!validateEmail() || !validatePwd() || !validateConfirmPwd()) {
     return false;
   }
+  const register = document.getElementById("register");
+  register.click();
+  return true;
+}
+
+function loginValidation() {
+  if (!validateEmail() || !validatePwd()) {
+    return false;
+  }
+  const loginSubmit = document.getElementById("login");
+  loginSubmit.click();
+  return true;
 }
 
 function containsAnyLetters(str) {

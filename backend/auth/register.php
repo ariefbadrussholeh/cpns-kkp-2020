@@ -1,6 +1,11 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
 <?php
 
-include "$_SERVER[DOCUMENT_ROOT]/server.php";
+include "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/server.php";
 
 if (isset($_POST['register'])){
     $nik = $_POST['nik'];
@@ -11,14 +16,37 @@ if (isset($_POST['register'])){
     $get = mysqli_query($conn, $query);
 
     if ($get->num_rows > 0){
-        echo "<script>alert('Woops! Email Sudah Terdaftar.')</script>";
+        echo '<script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire({
+                    icon: "error",
+                    title: "Gagal",
+                    text: "Woops! Email Sudah Terdaftar.",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href="../../register.php";
+                    }
+                });
+            }) 
+        </script>';
     }else{
         $insert_query = "INSERT INTO users(nik, email, password) VALUES ('$nik', '$email', '$password')";
         $insert = mysqli_query($conn, $insert_query);
 
         if ($insert){
-            echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-            header("location: ../../login.php");
+            echo '<script type="text/javascript">
+                $(document).ready(function(){
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil",
+                        text: "Selamat, registrasi berhasil!",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href="../../login.php";
+                        }
+                    });
+                }) 
+            </script>';
         }else{
             header("location: ../../register.php");
             echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
