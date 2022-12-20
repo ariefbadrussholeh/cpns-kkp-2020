@@ -54,26 +54,6 @@ CREATE TABLE `card` (
 -- Table structure for table `test_location`
 --
 
-CREATE TABLE `test_location` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `zip_code` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test_time`
---
-
-CREATE TABLE `test_time` (
-  `id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL,
-  `time_at` varchar(50) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -95,6 +75,8 @@ CREATE TABLE `users` (
   `ijazah` varchar(200) NOT NULL,
   `cv` varchar(200) DEFAULT NULL,
   `position_apply` varchar(50) NOT NULL,
+  `location_test` varchar(50) NOT NULL,
+  `time_test` varchar(50) NOT NULL,
   `document_submitted_at` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL,
   `verified_by` varchar(50) DEFAULT NULL,
@@ -104,15 +86,6 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
-
-INSERT INTO `users` (`nik`, `created_at`, `email`, `password`, `name`, `dob`, `sex`, `address`, `photo`, `biodata_submitted_at`, `ijazah`, `cv`, `position_apply`, `document_submitted_at`, `status`, `verified_by`, `verified_at`) VALUES
-('1212121212121212', '2022-12-18 16:16:00', 'wa@wa.id', '51251811c13e410b1282989d8c075a00', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '', NULL, '', '0000-00-00 00:00:00', '', NULL, '0000-00-00 00:00:00');
-
-INSERT INTO `users` (`nik`, `created_at`, `email`, `password`, `name`, `dob`, `sex`, `address`, `photo`, `biodata_submitted_at`, `ijazah`, `cv`, `position_apply`, `document_submitted_at`, `status`, `verified_by`, `verified_at`) VALUES
-('3527031101020011', '2022-12-18 16:16:00', 'arifbadrus08@gmail.com', '25d55ad283aa400af464c76d713c07ad', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '', NULL, '', '0000-00-00 00:00:00', '', NULL, '0000-00-00 00:00:00');
-INSERT INTO `users` (`nik`, `created_at`, `email`, `password`, `name`, `dob`, `sex`, `address`, `photo`, `biodata_submitted_at`, `ijazah`, `cv`, `position_apply`, `document_submitted_at`, `status`, `verified_by`, `verified_at`) VALUES
-('3521231231823197', '2022-12-18 16:16:00', 'mamanabdul08@gmail.com', '25d55ad283aa400af464c76d713c07ad', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '', NULL, '', '0000-00-00 00:00:00', '', NULL, '0000-00-00 00:00:00');
-
 INSERT INTO `admin` (`email`, `password`, `name`) VALUES ('arifbadrus08@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Arief Badrus Sholeh');
 --
 -- Indexes for dumped tables
@@ -130,19 +103,6 @@ ALTER TABLE `admin`
 ALTER TABLE `card`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nik` (`nik`);
-
---
--- Indexes for table `test_location`
---
-ALTER TABLE `test_location`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `test_time`
---
-ALTER TABLE `test_time`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `location_id` (`location_id`);
 
 --
 -- Indexes for table `users`
@@ -164,9 +124,6 @@ ALTER TABLE `card`
 
 --
 -- Constraints for table `test_time`
---
-ALTER TABLE `test_time`
-  ADD CONSTRAINT `test_time_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `test_location` (`id`);
 
 --
 -- Constraints for table `users`

@@ -110,7 +110,7 @@
       }
 
       const biodataSubmittedAt = document.getElementById("submit");
-      if(biodataSubmittedAt.value != "0000-00-00 00:00:00"){
+      if(biodataSubmittedAt.value != ""){
         document.getElementById("1").style.display = "none";
         document.getElementById("2").style.display = "flex";
       }

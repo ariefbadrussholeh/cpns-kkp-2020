@@ -21,7 +21,7 @@
         $path = $_FILES['photo']['name'];
         $ext = pathinfo($path, PATHINFO_EXTENSION);
         
-        $photo = $nik.".".$ext;
+        $photo = "photo_".$nik.".".$ext;
         
         $target_path = "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/storage/photo/";
         move_uploaded_file($tmp_loc, $target_path.$photo);
