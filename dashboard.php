@@ -24,6 +24,9 @@
     
     include "./backend/functions.php";
     $calon_pegawai = read("SELECT * FROM users WHERE email = '$email'")[0];
+    $biodata_submitted_at = $calon_pegawai["biodata_submitted_at"];
+    $document_submitted_at = $calon_pegawai["document_submitted_at"];
+    $status = $calon_pegawai['status'];
   ?>
 
   <body>
@@ -77,8 +80,8 @@
           <div class="box-group">
             <div class="timeline">
               <div class="title">
-                <div class="number box-unfinished">3</div>
-                <h1 class="unfinished">Seleksi Berkas</h1>
+                <div class="number box-unfinished" id="doc-box">3</div>
+                <h1 class="unfinished" id="doc-h1">Seleksi Berkas</h1>
               </div>
               <div class="group1">
                 <p>
@@ -97,12 +100,12 @@
           <div class="box-group">
             <div class="timeline">
               <div class="title">
-                <div class="number box-unfinished">4</div>
-                <h1 class="unfinished">Lolos</h1>
+                <div class="number box-unfinished" id="lolos-box">4</div>
+                <h1 class="unfinished" id="lolos-h1">Lolos</h1>
               </div>
               <div class="group1">
                 <p style="text-align: center;">Selamat anda dinyatakan lolos seleksi pemberkasan</p>
-                <button disabled>Unduh Kartu Peserta</button>
+                <button disabled id="download">Unduh Kartu Peserta</button>
               </div>
             </div>
           </div>
@@ -130,29 +133,38 @@
       </main>
       </section>
     </div>
+    <input type="text" id="bio" value="<?= $biodata_submitted_at ?>" hidden>
+    <input type="text" id="doc" value="<?= $document_submitted_at ?>" hidden>
+    <input type="text" id="status" value="<?= $status ?>" hidden>
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./public/js/navbar-toggle.js"></script>
     <script>
-      const cpBiodataAt = <?= $calon_pegawai['biodata_submitted_at'] ?>
-      const cpDocumentAt = <?= $calon_pegawai['document_submitted_at'] ?>
-      const cpVerifiedAt = <?= $calon_pegawai['verified_at'] ?>
+      const bioSubmitAt = document.getElementById("bio").value;
+      const docSubmitAt = document.getElementById("doc").value;
+      const status = document.getElementById("status").value;
 
-      const bioh1 = document.getElementById("bio-h1");
-      const biobox = document.getElementById("bio-box");
+      const bioBox = document.getElementById("bio-box");
+      const bioH1 = document.getElementById("bio-h1");
+      const docBox = document.getElementById("doc-box");
+      const docH1 = document.getElementById("doc-h1");
+      const lolosBox = document.getElementById("lolos-box");
+      const lolosH1 = document.getElementById("lolos-h1");
+      const download = document.getElementById("download");
 
-      if(cpBiodataAt != "0000-00-00 00:00:00" && cpVerifiedAt == "0000-00-00 00:00:00"){
-        bioh1.classList.remove("unfinished")
-        biobox.classList.remove("box-unfinished")
-        bioh1.classList.add("waiting")
-        biobox.classList.add("box-waiting")
-      } else {
-        bioh1.classList.remove("waiting")
-        biobox.classList.remove("box-waiting")
-        bioh1.classList.add("verified")
-        biobox.classList.add("box-verified")
+      if(bioSubmitAt != "" && status == ""){
+        bioBox.style.backgroundColor = "#dfc435";
+        bioH1.style.color = "#dfc435";
       }
-    </script>
+      if(docSubmitAt != "" && status == ""){
+        docBox.style.backgroundColor = "#dfc435";
+        docH1.style.color = "#dfc435";
+      }
+      if(docSubmitAt != "" && bioSubmitAt != "" && status == ""){
+        lolosBox.style.backgroundColor = "#dfc435";
+        lolosH1.style.color = "#dfc435";
+      }
+      </script>
   </body>
 </html>
