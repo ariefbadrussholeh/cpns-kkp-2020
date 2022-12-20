@@ -33,7 +33,7 @@
       <?php include './public/component/navbar.php'?>
       <div class="flex">
         <h1>Dokumen Peserta</h1>
-        <form action="Test.php" method="POST" enctype="multipart/form-data">
+        <form action="./backend/submit-dokumen.php" method="POST" enctype="multipart/form-data">
           <div class="input-group">
             <h5>Melamar Posisi</h5>
             <div class="flex-container">
@@ -125,6 +125,7 @@
               </div>
             </div>
           </div>
+          <input type="text" name="email" id="email" value="<?= $email ?>" hidden/>
           <button type="button" onclick="validateSubmitDocument()">Submit</button>
           <button type="submit" name="dokumen" hidden id="submit-document">Submit</button>
         </form>

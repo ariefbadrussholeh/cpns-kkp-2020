@@ -27,7 +27,7 @@ logout.addEventListener("click", function () {
       denyButtonText: `Tidak`,
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = "../../backend/auth/admin-logout.php";
+        window.location.href = "../backend/auth/admin-logout.php";
       }
     });
   });

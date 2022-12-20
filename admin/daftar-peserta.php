@@ -34,33 +34,23 @@
       <?php include './component/navbar.php'?>
       <section>
         <h1 style="margin-bottom: 16px;">Selamat Datang, <?= $admin_name['name'] ?></h1>
-        <p style="margin-bottom: 32px;">Daftar Peserta CPNS KKP 2022</p>
+        <p style="margin-bottom: 32px;">Verifikasi CPNS KKP 2022</p>
       <main>
       <div>
         <table>
           <thead>
             <th>NIK</th>
             <th>Nama</th>
-            <th>Dokumen</th>
-            <th>Verifikasi</th>
+            <th>Lokasi</th>
+            <th>Waktu</th>
           </thead>
           <tbody>
             <?php foreach ($calon_pegawai as $row) : ?>
             <tr>
               <td><?= $row['nik'] ?></td>
               <td><?= $row['name'] ?></td>
-              <td>
-                <div class="block">
-                  <a href=""><img src="../public/img/file.svg" alt=""></a>
-                  <a href=""><img src="../public/img/award.svg" alt=""></a>
-                </div>
-              </td>
-              <td>
-                <div class="block">
-                  <a href=""><img src="../public/img/check.svg" alt=""></a>
-                  <a href=""><img src="../public/img/x.svg" alt=""></a>
-                </div>
-              </td>
+              <td></td>
+              <td></td>
             </tr>
             <?php endforeach; ?>
           </tbody>

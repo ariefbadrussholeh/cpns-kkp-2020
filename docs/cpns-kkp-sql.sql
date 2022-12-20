@@ -83,22 +83,22 @@ CREATE TABLE `test_time` (
 
 CREATE TABLE `users` (
   `nik` varchar(16) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `dob` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dob` date NOT NULL DEFAULT '0000-00-00',
   `sex` varchar(10) NOT NULL,
   `address` varchar(100) NOT NULL,
   `photo` varchar(200) NOT NULL,
-  `biodata_submitted_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `biodata_submitted_at` varchar(100) NOT NULL,
   `ijazah` varchar(200) NOT NULL,
   `cv` varchar(200) DEFAULT NULL,
   `position_apply` varchar(50) NOT NULL,
-  `document_submitted_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `document_submitted_at` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL,
   `verified_by` varchar(50) DEFAULT NULL,
-  `verified_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `verified_at` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -113,6 +113,7 @@ INSERT INTO `users` (`nik`, `created_at`, `email`, `password`, `name`, `dob`, `s
 INSERT INTO `users` (`nik`, `created_at`, `email`, `password`, `name`, `dob`, `sex`, `address`, `photo`, `biodata_submitted_at`, `ijazah`, `cv`, `position_apply`, `document_submitted_at`, `status`, `verified_by`, `verified_at`) VALUES
 ('3521231231823197', '2022-12-18 16:16:00', 'mamanabdul08@gmail.com', '25d55ad283aa400af464c76d713c07ad', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '', NULL, '', '0000-00-00 00:00:00', '', NULL, '0000-00-00 00:00:00');
 
+INSERT INTO `admin` (`email`, `password`, `name`) VALUES ('arifbadrus08@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Arief Badrus Sholeh');
 --
 -- Indexes for dumped tables
 --
