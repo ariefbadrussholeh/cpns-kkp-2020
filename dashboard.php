@@ -104,8 +104,16 @@
                 <h1 class="unfinished" id="lolos-h1">Lolos</h1>
               </div>
               <div class="group1">
-                <p style="text-align: center;">Selamat anda dinyatakan lolos seleksi pemberkasan</p>
-                <button disabled id="download">Unduh Kartu Peserta</button>
+                <p id="ack" style="text-align: center;">-</p>
+                <form id="form-download" action="./backend/download.php" method="post">
+                  <input type="text" name="photo" value="<?= $calon_pegawai['photo'] ?>" hidden>
+                  <input type="text" name="nik" value="<?= $calon_pegawai['nik'] ?>" hidden>
+                  <input type="text" name="name" value="<?= $calon_pegawai['name'] ?>" hidden>
+                  <input type="text" name="position-apply" value="<?= $calon_pegawai['position_apply'] ?>" hidden>
+                  <input type="text" name="location-test" value="<?= $calon_pegawai['location_test'] ?>" hidden>
+                  <input type="text" name="time-test" value="<?= $calon_pegawai['time_test'] ?>" hidden>
+                  <button disabled id="download">Unduh Kartu Peserta</button>
+                </form>
               </div>
             </div>
           </div>
@@ -152,18 +160,36 @@
       const lolosBox = document.getElementById("lolos-box");
       const lolosH1 = document.getElementById("lolos-h1");
       const download = document.getElementById("download");
+      const ack = document.getElementById("ack");
 
       if(bioSubmitAt != "" && status == ""){
         bioBox.style.backgroundColor = "#dfc435";
         bioH1.style.color = "#dfc435";
+      } else {
+        bioBox.style.backgroundColor = "#69aa63";
+        bioH1.style.color = "#69aa63";
       }
       if(docSubmitAt != "" && status == ""){
         docBox.style.backgroundColor = "#dfc435";
         docH1.style.color = "#dfc435";
+      } else {
+        docBox.style.backgroundColor = "#69aa63";
+        docH1.style.color = "#69aa63";
       }
       if(docSubmitAt != "" && bioSubmitAt != "" && status == ""){
         lolosBox.style.backgroundColor = "#dfc435";
         lolosH1.style.color = "#dfc435";
+      } else if (status == "passed"){
+        lolosBox.style.backgroundColor = "#69aa63";
+        lolosH1.style.color = "#69aa63";
+        ack.innerHTML = "Selamat anda dinyatakan lolos seleksi berkas. Silahkan cetak kartu ujian";
+        ack.style.color = "#69aa63";
+        download.disabled = false;
+      } else {
+        lolosBox.style.backgroundColor = "red";
+        lolosH1.style.color = "red";
+        ack.innerHTML = "Mohon maaf anda belum lolos seleksi berkas. Silahkan menunggu tahun depan";
+        ack.style.color = "red";
       }
       </script>
   </body>

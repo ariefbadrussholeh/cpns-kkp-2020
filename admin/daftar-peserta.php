@@ -25,7 +25,7 @@
       $email = $_SESSION['admin_email'];
 
       include "../backend/functions.php";
-      $calon_pegawai = read("SELECT * FROM users WHERE status = 'verified'");
+      $calon_pegawai = read("SELECT * FROM users WHERE status = 'passed'");
       $admin_name = read("SELECT name FROM admin WHERE email = '$email'")[0];
   ?>
   <body>
