@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2022 at 03:00 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Waktu pembuatan: 20 Des 2022 pada 09.05
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,32 +33,17 @@ CREATE TABLE `admin` (
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `card`
+-- Dumping data untuk tabel `admin`
 --
 
-CREATE TABLE `card` (
-  `id` int(11) NOT NULL,
-  `nik` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `position_apply` varchar(50) NOT NULL,
-  `test_location` varchar(50) NOT NULL,
-  `time_at` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `admin` (`email`, `password`, `name`) VALUES
+('admin@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'admin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test_location`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -84,28 +69,25 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
-INSERT INTO `admin` (`email`, `password`, `name`) VALUES ('arifbadrus08@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Arief Badrus Sholeh');
+
+INSERT INTO `users` (`nik`, `created_at`, `email`, `password`, `name`, `dob`, `sex`, `address`, `photo`, `biodata_submitted_at`, `ijazah`, `cv`, `position_apply`, `location_test`, `time_test`, `document_submitted_at`, `status`, `verified_by`, `verified_at`) VALUES
+('3527031101020011', '2022-12-20 03:41:26', 'arifbadrus08@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Arief Badrus Sholeh', '2002-01-11', 'Laki-laki', 'Pamekasan, Madura', 'photo_3527031101020011.jpg', '20-12-2022 10:42:15', 'ijazah_3527031101020011.pdf', 'cv_3527031101020011.pdf', 'Biro Perencanaan', 'Surabaya', '10.00 - 12.00', '20-12-2022 10:43:13', 'passed', 'admin@gmail.com', '20-12-2022 11:41:27'),
+('3527031101020022', '2022-12-20 03:46:56', 'muhammad08@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Muhammad', '2003-06-16', 'Laki-laki', 'Jakarta', 'photo_3527031101020022.jpg', '20-12-2022 15:00:48', 'ijazah_3527031101020022.pdf', 'cv_3527031101020022.pdf', 'Biro Hukum dan Organisasi', 'Malang', '12.30 - 14.30', '20-12-2022 15:01:13', 'passed', 'admin@gmail.com', '20-12-2022 15:01:23');
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `card`
---
-ALTER TABLE `card`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `nik` (`nik`);
-
---
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`nik`),
@@ -113,20 +95,11 @@ ALTER TABLE `users`
   ADD KEY `verified_by` (`verified_by`);
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `card`
---
-ALTER TABLE `card`
-  ADD CONSTRAINT `card_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `users` (`nik`);
-
---
--- Constraints for table `test_time`
-
---
--- Constraints for table `users`
+-- Ketidakleluasaan untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`verified_by`) REFERENCES `admin` (`email`);

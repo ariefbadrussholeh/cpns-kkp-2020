@@ -165,14 +165,14 @@
       if(bioSubmitAt != "" && status == ""){
         bioBox.style.backgroundColor = "#dfc435";
         bioH1.style.color = "#dfc435";
-      } else {
+      } else if(bioSubmitAt != "" && status != "") {
         bioBox.style.backgroundColor = "#69aa63";
         bioH1.style.color = "#69aa63";
       }
       if(docSubmitAt != "" && status == ""){
         docBox.style.backgroundColor = "#dfc435";
         docH1.style.color = "#dfc435";
-      } else {
+      } else if(docSubmitAt != "" && status != "") {
         docBox.style.backgroundColor = "#69aa63";
         docH1.style.color = "#69aa63";
       }
@@ -185,7 +185,7 @@
         ack.innerHTML = "Selamat anda dinyatakan lolos seleksi berkas. Silahkan cetak kartu ujian";
         ack.style.color = "#69aa63";
         download.disabled = false;
-      } else {
+      } else if (status == "failed") {
         lolosBox.style.backgroundColor = "red";
         lolosH1.style.color = "red";
         ack.innerHTML = "Mohon maaf anda belum lolos seleksi berkas. Silahkan menunggu tahun depan";
