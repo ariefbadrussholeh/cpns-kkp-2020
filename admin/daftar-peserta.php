@@ -25,7 +25,7 @@
       $email = $_SESSION['admin_email'];
 
       include "../backend/functions.php";
-      $calon_pegawai = read("SELECT * FROM users");
+      $calon_pegawai = read("SELECT * FROM users WHERE status = 'verified'");
       $admin_name = read("SELECT name FROM admin WHERE email = '$email'")[0];
   ?>
   <body>
@@ -41,6 +41,7 @@
           <thead>
             <th>NIK</th>
             <th>Nama</th>
+            <th>Posisi</th>
             <th>Lokasi</th>
             <th>Waktu</th>
           </thead>
@@ -49,8 +50,9 @@
             <tr>
               <td><?= $row['nik'] ?></td>
               <td><?= $row['name'] ?></td>
-              <td></td>
-              <td></td>
+              <td><?= $row['position_apply'] ?></td>
+              <td><?= $row['location_test'] ?></td>
+              <td><?= $row['time_test'] ?></td>
             </tr>
             <?php endforeach; ?>
           </tbody>

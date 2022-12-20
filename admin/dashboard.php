@@ -25,7 +25,7 @@
       $email = $_SESSION['admin_email'];
 
       include "../backend/functions.php";
-      $calon_pegawai = read("SELECT * FROM users");
+      $calon_pegawai = read('SELECT * FROM users WHERE status = "" AND biodata_submitted_at <> "" AND document_submitted_at <> ""');
       $admin_name = read("SELECT name FROM admin WHERE email = '$email'")[0];
   ?>
   <body>
@@ -51,14 +51,14 @@
               <td><?= $row['name'] ?></td>
               <td>
                 <div class="block">
-                  <a href=""><img src="../public/img/file.svg" alt=""></a>
-                  <a href=""><img src="../public/img/award.svg" alt=""></a>
+                  <a href="../storage/ijazah/<?= $row['ijazah'] ?>"><img src="../public/img/file.svg" alt=""></a>
+                  <a href="../storage/cv/<?= $row['cv'] ?>"><img src="../public/img/award.svg" alt=""></a>
                 </div>
               </td>
               <td>
                 <div class="block">
-                  <a href=""><img src="../public/img/check.svg" alt=""></a>
-                  <a href=""><img src="../public/img/x.svg" alt=""></a>
+                  <a href="../backend/verification.php?email=<?= $row['email'] ?>&status=passed&verified_by=<?= $email ?>"><img src="../public/img/check.svg" alt=""></a>
+                  <a href="../backend/verification.php?email=<?= $row['email'] ?>&status=failed&verified_by=<?= $email ?>"><img src="../public/img/x.svg" alt=""></a>
                 </div>
               </td>
             </tr>
@@ -71,6 +71,5 @@
     </div>
     <!-- Javascript -->
     <script src="./js/navbar-toggle.js"></script>
-
   </body>
 </html>
