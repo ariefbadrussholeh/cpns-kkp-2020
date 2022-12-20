@@ -24,16 +24,18 @@
     $email = $_SESSION['email'];
 
     include "./backend/functions.php";
-    $nik = read("SELECT nik FROM users WHERE email = '$email'")[0]['nik'];
+    $calon_pegawai = read("SELECT * FROM users WHERE email = '$email'")[0];
+    $nik = $calon_pegawai['nik'];
+    $document_submitted_at = $calon_pegawai['document_submitted_at'];
   ?>
 
   <body>
     <?php include './public/component/header.php'?>
     <div class="container">
       <?php include './public/component/navbar.php'?>
-      <div class="flex">
+      <div class="flex" id="1">
         <h1>Dokumen Peserta</h1>
-        <form action="Test.php" method="POST" enctype="multipart/form-data">
+        <form action="./backend/submit-dokumen.php" method="POST" enctype="multipart/form-data">
           <div class="input-group">
             <h5>Melamar Posisi</h5>
             <div class="flex-container">
@@ -125,16 +127,19 @@
               </div>
             </div>
           </div>
+          <input type="text" name="nik" id="nik" value="<?= $nik ?>" hidden/>
+          <input type="text" name="email" id="email" value="<?= $email ?>" hidden/>
           <button type="button" onclick="validateSubmitDocument()">Submit</button>
           <button type="submit" name="dokumen" hidden id="submit-document">Submit</button>
         </form>
       </div>
       <!-- Ini untuk kondisi sudah mengisi biodata -->
-      <div class="done" style="display: none;">
+      <div id="2" class="done" style="display: none;">
         <img src="./public/img/success icon component.svg" alt="">
         <p>Anda sudah mengumpulkan berkas pendaftaran</p>
       </div>
     </div>
+    <input type="text" id="submit" value="<?= $document_submitted_at ?>" hidden>
     <!-- Javascript -->
     <script src="./public/js/navbar-toggle.js"></script>
     <script src="./public/js/drop-file.js"></script>
@@ -156,6 +161,12 @@
             }
           });
         });
+      }
+
+      const documentSubmittedAt = document.getElementById("submit");
+      if(documentSubmittedAt.value != ""){
+        document.getElementById("1").style.display = "none";
+        document.getElementById("2").style.display = "flex";
       }
     </script>
   </body>

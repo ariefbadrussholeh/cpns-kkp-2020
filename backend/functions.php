@@ -12,8 +12,4 @@ function read($query){
   return $rows;
 }
 
-function insert($data){
-
-}
-
 ?>

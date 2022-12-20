@@ -501,4 +501,7 @@ td a {
   form {
     width: 80%;
   }
+  form#form-download {
+    width: 100%;
+  }
 }

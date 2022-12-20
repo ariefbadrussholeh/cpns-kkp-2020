@@ -25,7 +25,7 @@
       $email = $_SESSION['admin_email'];
 
       include "../backend/functions.php";
-      $calon_pegawai = read("SELECT * FROM users");
+      $calon_pegawai = read('SELECT * FROM users WHERE status = "" AND biodata_submitted_at <> "" AND document_submitted_at <> ""');
       $admin_name = read("SELECT name FROM admin WHERE email = '$email'")[0];
   ?>
   <body>
@@ -34,23 +34,33 @@
       <?php include './component/navbar.php'?>
       <section>
         <h1 style="margin-bottom: 16px;">Selamat Datang, <?= $admin_name['name'] ?></h1>
-        <p style="margin-bottom: 32px;">Verifikasi CPNS KKP 2022</p>
+        <p style="margin-bottom: 32px;">Daftar Peserta CPNS KKP 2022</p>
       <main>
       <div>
         <table>
           <thead>
             <th>NIK</th>
             <th>Nama</th>
-            <th>Lokasi</th>
-            <th>Waktu</th>
+            <th>Dokumen</th>
+            <th>Verifikasi</th>
           </thead>
           <tbody>
             <?php foreach ($calon_pegawai as $row) : ?>
             <tr>
               <td><?= $row['nik'] ?></td>
               <td><?= $row['name'] ?></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div class="block">
+                  <a href="../storage/ijazah/<?= $row['ijazah'] ?>"><img src="../public/img/file.svg" alt=""></a>
+                  <a href="../storage/cv/<?= $row['cv'] ?>"><img src="../public/img/award.svg" alt=""></a>
+                </div>
+              </td>
+              <td>
+                <div class="block">
+                  <a href="../backend/verification.php?email=<?= $row['email'] ?>&status=passed&verified_by=<?= $email ?>"><img src="../public/img/check.svg" alt=""></a>
+                  <a href="../backend/verification.php?email=<?= $row['email'] ?>&status=failed&verified_by=<?= $email ?>"><img src="../public/img/x.svg" alt=""></a>
+                </div>
+              </td>
             </tr>
             <?php endforeach; ?>
           </tbody>
@@ -61,6 +71,5 @@
     </div>
     <!-- Javascript -->
     <script src="./js/navbar-toggle.js"></script>
-
   </body>
 </html>

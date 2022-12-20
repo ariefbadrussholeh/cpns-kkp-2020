@@ -24,14 +24,16 @@
     $email = $_SESSION['email'];
 
     include "./backend/functions.php";
-    $nik = read("SELECT nik FROM users WHERE email = '$email'")[0]['nik'];
+    $calon_pegawai = read("SELECT * FROM users WHERE email = '$email'")[0];
+    $nik = $calon_pegawai['nik'];
+    $biodata_submitted_at = $calon_pegawai['biodata_submitted_at'];
   ?>
 
   <body>
     <?php include './public/component/header.php'?>
     <div class="container">
       <?php include './public/component/navbar.php'?>
-      <div class="flex">
+      <div class="flex" id="1">
         <h1>Biodata</h1>
         <form action="./backend/submit-biodata.php" method="POST" enctype="multipart/form-data">
           <div class="flex-container">
@@ -43,7 +45,8 @@
             <div class="form-group">
               <div class="input-group">
                 <label for="nik">NIK</label>
-                <input type="text" name="nik" id="nik" value="<?= $nik ?>" disabled/>
+                <input type="text" value="<?= $nik ?>" disabled/>
+                <input type="text" name="nik" id="nik" value="<?= $nik ?>" hidden/>
               </div>
               <div class="input-group">
                 <label for="name">Nama</label>
@@ -70,15 +73,18 @@
             <input type="checkbox" id="aggreement" required>
             <label for="aggreement" class="check">saya mengaku bahwa data yang saya masukkan adalah data asli</label>
           </div>
+          <input type="text" name="email" id="email" value="<?= $email ?>" hidden/>
           <button type="button" onclick="validateSubmitBiodata()">Submit</button>
           <button type="submit" name="biodata" hidden id="submit-biodata">Submit</button>
         </form>
       </div>
       <!-- Ini untuk kondisi sudah mengisi biodata -->
-      <div class="done" style="display: none;">
+      <div id="2" class="done" style="display: none;">
         <img src="./public/img/success icon component.svg" alt="">
         <p>Anda sudah mengisi biodata</p>
       </div>
+
+      <input type="text" id="submit" value="<?= $biodata_submitted_at ?>" hidden>
     </div>
     <!-- Javascript -->
     <script src="./public/js/navbar-toggle.js"></script>
@@ -101,6 +107,12 @@
             }
           });
         });
+      }
+
+      const biodataSubmittedAt = document.getElementById("submit");
+      if(biodataSubmittedAt.value != ""){
+        document.getElementById("1").style.display = "none";
+        document.getElementById("2").style.display = "flex";
       }
     </script>
   </body>
