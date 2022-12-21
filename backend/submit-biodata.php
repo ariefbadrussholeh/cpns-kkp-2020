@@ -4,7 +4,7 @@
 </head>
 
 <?php 
-    include "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/server.php";
+    include "$_SERVER[DOCUMENT_ROOT]/server.php";
 
     if(isset($_POST["biodata"]) && isset($_FILES)){
         $nik = $_POST["nik"];
@@ -23,7 +23,7 @@
         
         $photo = "photo_".$nik.".".$ext;
         
-        $target_path = "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/storage/photo/";
+        $target_path = "$_SERVER[DOCUMENT_ROOT]/storage/photo/";
         move_uploaded_file($tmp_loc, $target_path.$photo);
 
         $query = "UPDATE users SET name='$name', dob='$dob', sex='$sex', address='$address', photo='$photo', biodata_submitted_at='$biodata_submitted_at' WHERE email = '$email'";
@@ -38,6 +38,20 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.location.href="../dashboard.php";
+                    }
+                });
+            }) 
+            </script>';
+        }else{
+            echo '<script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire({
+                    icon: "error",
+                    title: "Wooops...",
+                    text: "Terjadi kesalahan, coba beberapa saat lagi!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href="../biodata.php";
                     }
                 });
             }) 

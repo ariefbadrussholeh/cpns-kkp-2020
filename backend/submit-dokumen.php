@@ -4,7 +4,7 @@
 </head>
 
 <?php 
-  include "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/server.php";
+  include "$_SERVER[DOCUMENT_ROOT]/server.php";
 
   if(isset($_POST["dokumen"]) && isset($_FILES)){
 
@@ -23,7 +23,7 @@
     
     $ijazah = "ijazah_".$nik.".".$ext;
 
-    $target_path = "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/storage/ijazah/";
+    $target_path = "$_SERVER[DOCUMENT_ROOT]/storage/ijazah/";
     move_uploaded_file($tmp_loc, $target_path.$ijazah);
     
     $tmp_loc = $_FILES['cv']['tmp_name'];
@@ -32,7 +32,7 @@
     
     $cv = "cv_".$nik.".".$ext;
 
-    $target_path = "$_SERVER[DOCUMENT_ROOT]/cpns-kkp/storage/cv/";
+    $target_path = "$_SERVER[DOCUMENT_ROOT]/storage/cv/";
     move_uploaded_file($tmp_loc, $target_path.$cv);
 
     $query = "UPDATE users SET position_apply='$position', time_test='$time', location_test='$location', cv='$cv', ijazah='$ijazah', document_submitted_at='$document_submitted_at' WHERE email = '$email'";
@@ -51,6 +51,20 @@
             });
         }) 
         </script>';
+    }else{
+        echo '<script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire({
+                    icon: "error",
+                    title: "Wooops...",
+                    text: "Terjadi kesalahan, coba beberapa saat lagi!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href="../dokumen.php";
+                    }
+                });
+            }) 
+            </script>';
     }
   }
 ?>
