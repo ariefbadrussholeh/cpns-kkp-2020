@@ -16,7 +16,19 @@ if (isset($_POST['login'])){
         $row = mysqli_fetch_assoc($get);
         session_start();
         $_SESSION['email'] = $row['email'];
-        header("Location: ../../dashboard.php");
+        echo '<script type="text/javascript">
+            $(document).ready(function(){
+                Swal.fire({
+                    icon: "success",
+                    title: "Sukses",
+                    text: "Login Sukses",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href="../../dashboard.php";
+                    }
+                });
+            })
+        </script>';
     }else{
         echo '<script type="text/javascript">
             $(document).ready(function(){

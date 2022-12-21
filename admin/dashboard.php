@@ -25,7 +25,7 @@
       $email = $_SESSION['admin_email'];
 
       include "../backend/functions.php";
-      $calon_pegawai = read('SELECT * FROM users WHERE status = "" AND biodata_submitted_at <> "" AND document_submitted_at <> ""');
+      $calon_pegawai = read('SELECT * FROM users WHERE status IS NULL AND biodata_submitted_at <> "" AND document_submitted_at <> ""');
       $admin_name = read("SELECT name FROM admin WHERE email = '$email'")[0];
   ?>
   <body>
@@ -51,7 +51,7 @@
               <td><?= $row['name'] ?></td>
               <td>
                 <div class="block">
-                  <a href="../storage/ijazah/<?= $row['ijazah'] ?>"><img src="../public/img/file.svg" alt=""></a>
+                  <a href="../storage/ijazah<?= $row['ijazah'] ?>"><img src="../public/img/file.svg" alt=""></a>
                   <a href="../storage/cv/<?= $row['cv'] ?>"><img src="../public/img/award.svg" alt=""></a>
                 </div>
               </td>

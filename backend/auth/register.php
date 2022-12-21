@@ -48,12 +48,34 @@ if (isset($_POST['register'])){
                 }) 
             </script>';
         }else{
-            header("location: ../../register.php");
-            echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
+            echo '<script type="text/javascript">
+                $(document).ready(function(){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Wooops..",
+                        text: "Gagal mendaftar. Cobalah beberapa saat lagi.",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href="../../register.php";
+                        }
+                    });
+                }) 
+            </script>';
         }
     }
 }else{
-    header("location: ../../register.php");
-    echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
+    echo '<script type="text/javascript">
+        $(document).ready(function(){
+            Swal.fire({
+                icon: "error",
+                title: "Wooops..",
+                text: "Terjadi kesalahan.",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.location.href="../../register.php";
+                }
+            });
+        }) 
+    </script>';
 }
 
